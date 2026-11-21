@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "rustmine",
+  "version": "${version}",
+  "name": "RustMine",
+  "description": "Original survival-themed items for Minecraft 1.21.1.",
+  "authors": ["RustMine"],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.rustmine.RustMineMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
