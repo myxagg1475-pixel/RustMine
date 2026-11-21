@@ -6,7 +6,7 @@ An original Rust-inspired visual content prototype for Minecraft Java 1.21.1. No
 
 | Custom Model Data | Item | Model |
 |---:|---|---|
-| 10001 | Scrap | Custom cuboid model |
+| 10001 | Scrap | Custom cuboid model with original pixel texture |
 | 10002 | Cloth bundle | Custom cuboid model |
 | 10003 | Metal component | Custom cuboid model |
 | 10004 | Wood bundle | Custom cuboid model |
