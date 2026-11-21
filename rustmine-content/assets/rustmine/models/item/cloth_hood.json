@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/leather_helmet"
+    "layer0": "rustmine:item/cloth_hood"
   },
   "display": {
     "thirdperson_righthand": {
