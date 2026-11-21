@@ -1,18 +1,112 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": { "layer0": "minecraft:item/cobblestone" },
+  "textures": {
+    "layer0": "rustmine:item/stone_chunk"
+  },
   "display": {
-    "thirdperson_righthand": { "rotation": [0, 90, -35], "translation": [0, 1, 1], "scale": [0.8, 0.8, 0.8] },
-    "firstperson_righthand": { "rotation": [0, 90, -20], "translation": [1, 2, 0], "scale": [1.05, 1.05, 1.05] }
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        90,
+        -35
+      ],
+      "translation": [
+        0,
+        1,
+        1
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        90,
+        -20
+      ],
+      "translation": [
+        1,
+        2,
+        0
+      ],
+      "scale": [
+        1.05,
+        1.05,
+        1.05
+      ]
+    }
   },
   "elements": [
-    { "from": [3, 3, 4], "to": [13, 12, 12], "faces": {
-      "north": { "uv": [3, 3, 13, 12], "texture": "#layer0" },
-      "south": { "uv": [3, 3, 13, 12], "texture": "#layer0" },
-      "east": { "uv": [4, 3, 12, 12], "texture": "#layer0" },
-      "west": { "uv": [4, 3, 12, 12], "texture": "#layer0" },
-      "up": { "uv": [3, 4, 13, 12], "texture": "#layer0" },
-      "down": { "uv": [3, 4, 13, 12], "texture": "#layer0" }
-    }}
+    {
+      "from": [
+        3,
+        3,
+        4
+      ],
+      "to": [
+        13,
+        12,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            3,
+            3,
+            13,
+            12
+          ],
+          "texture": "#layer0"
+        },
+        "south": {
+          "uv": [
+            3,
+            3,
+            13,
+            12
+          ],
+          "texture": "#layer0"
+        },
+        "east": {
+          "uv": [
+            4,
+            3,
+            12,
+            12
+          ],
+          "texture": "#layer0"
+        },
+        "west": {
+          "uv": [
+            4,
+            3,
+            12,
+            12
+          ],
+          "texture": "#layer0"
+        },
+        "up": {
+          "uv": [
+            3,
+            4,
+            13,
+            12
+          ],
+          "texture": "#layer0"
+        },
+        "down": {
+          "uv": [
+            3,
+            4,
+            13,
+            12
+          ],
+          "texture": "#layer0"
+        }
+      }
+    }
   ]
 }
