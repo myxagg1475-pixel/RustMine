@@ -1,20 +1,31 @@
 # RustMine Items — Minecraft 1.21.1
 
-This is the first content-pack prototype for RustMine. It uses original cuboid item geometry and vanilla Minecraft textures as placeholders so the pack can be tested without redistributing Rust game assets.
+An original Rust-inspired visual content prototype for Minecraft Java 1.21.1. No Rust game assets are copied.
 
-## Included prototypes
+## Prototype items
 
-- Scrap token — custom 3D cuboid model, CustomModelData 10001
-- Cloth bundle — custom 3D cuboid model, CustomModelData 10002
-- Metal component — custom 3D cuboid model, CustomModelData 10003
+| Custom Model Data | Item | Model |
+|---:|---|---|
+| 10001 | Scrap | Custom cuboid model |
+| 10002 | Cloth bundle | Custom cuboid model |
+| 10003 | Metal component | Custom cuboid model |
+| 10004 | Wood bundle | Custom cuboid model |
+| 10005 | Stone chunk | Custom cuboid model |
 
-## Test
+The models use vanilla Minecraft textures as temporary placeholders. Custom pixel-art textures are a later task.
+
+## Install and test
 
 1. Copy this folder into `.minecraft/resourcepacks/RustMine-Items`.
 2. Enable the pack in Minecraft 1.21.1.
 3. In a world with cheats enabled, use:
-   - `/give @s minecraft:paper[minecraft:custom_model_data=10001]`
-   - `/give @s minecraft:paper[minecraft:custom_model_data=10002]`
-   - `/give @s minecraft:paper[minecraft:custom_model_data=10003]`
 
-These are visual prototypes, not registered mod items yet. The next stage is a Fabric mod that registers proper RustMine items and adds first-person presentation/idle animations. No Rust game files are copied.
+```mcfunction
+/give @s minecraft:paper[minecraft:custom_model_data=10001]
+/give @s minecraft:paper[minecraft:custom_model_data=10002]
+/give @s minecraft:paper[minecraft:custom_model_data=10003]
+/give @s minecraft:paper[minecraft:custom_model_data=10004]
+/give @s minecraft:paper[minecraft:custom_model_data=10005]
+```
+
+These are resource-pack prototypes, not registered Fabric mod items. They provide 3D cuboid geometry and first-/third-person display transforms, but do not yet include animated first-person movement. The next implementation stage is a Fabric mod with registered items, original textures, and safe visual/idle animations.
