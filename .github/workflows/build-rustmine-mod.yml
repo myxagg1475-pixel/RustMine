@@ -1,0 +1,57 @@
+name: Build RustMine Fabric Mod
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - rustmine-items-pack
+    paths:
+      - 'fabric-mod/**'
+      - 'rustmine-content/assets/rustmine/models/**'
+      - 'rustmine-content/assets/rustmine/textures/**'
+      - '.github/workflows/build-rustmine-mod.yml'
+  pull_request:
+    paths:
+      - 'fabric-mod/**'
+      - 'rustmine-content/assets/rustmine/models/**'
+      - 'rustmine-content/assets/rustmine/textures/**'
+      - '.github/workflows/build-rustmine-mod.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.8.0'
+
+      - name: Copy RustMine models and textures into mod
+        run: |
+          mkdir -p fabric-mod/src/main/resources/assets/rustmine
+          cp -R rustmine-content/assets/rustmine/models fabric-mod/src/main/resources/assets/rustmine/
+          cp -R rustmine-content/assets/rustmine/textures fabric-mod/src/main/resources/assets/rustmine/
+
+      - name: Build Fabric mod
+        working-directory: fabric-mod
+        run: gradle build --no-daemon
+
+      - name: Upload Fabric mod JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: RustMine-Fabric-1.21.1
+          path: fabric-mod/build/libs/*.jar
+          if-no-files-found: error
+          retention-days: 14

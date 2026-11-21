@@ -1,0 +1,17 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/paper"
+  },
+  "overrides": [
+    {"predicate":{"custom_model_data":10001},"model":"rustmine:item/scrap"},
+    {"predicate":{"custom_model_data":10002},"model":"rustmine:item/cloth_bundle"},
+    {"predicate":{"custom_model_data":10003},"model":"rustmine:item/metal_component"},
+    {"predicate":{"custom_model_data":10004},"model":"rustmine:item/wood_bundle"},
+    {"predicate":{"custom_model_data":10005},"model":"rustmine:item/stone_chunk"},
+    {"predicate":{"custom_model_data":10006},"model":"rustmine:item/water_canister"},
+    {"predicate":{"custom_model_data":10007},"model":"rustmine:item/field_backpack"},
+    {"predicate":{"custom_model_data":10008},"model":"rustmine:item/cloth_hood"},
+    {"predicate":{"custom_model_data":10009},"model":"rustmine:item/field_viewer"}
+  ]
+}
