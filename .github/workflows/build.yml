@@ -4,7 +4,7 @@ name: Build RustMine APK
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, chatgpt-access-check]
 
 permissions:
   contents: read
@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -29,7 +29,7 @@ jobs:
           gradle-version: '8.9'
 
       - name: Build RustMine
-        run: gradle assembleDebug
+        run: gradle assembleDebug --stacktrace
 
       - name: Save APK
         uses: actions/upload-artifact@v4
