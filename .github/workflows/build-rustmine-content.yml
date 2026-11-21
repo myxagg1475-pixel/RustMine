@@ -52,7 +52,7 @@ jobs:
                       break
               zlib.decompress(bytes(compressed))
               assert chunks[-1] == b"IEND", f"Missing IEND: {path}"
-              textures.add(path.relative_to(root).with_suffix("").as_posix())
+              textures.add(path.relative_to(root / "textures").with_suffix("").as_posix())
               print("PNG OK:", path)
           for path in (root / "models" / "item").glob("*.json"):
               model = json.loads(path.read_text())
