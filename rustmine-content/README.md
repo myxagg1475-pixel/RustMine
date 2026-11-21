@@ -1,27 +1,26 @@
-# RustMine Items — Minecraft 1.21.1
+# RustMine Items — Minecraft Java 1.21.1
 
-An original Rust-inspired visual content prototype for Minecraft Java 1.21.1. No Rust game assets are copied.
+An original Rust-inspired visual content prototype. No Rust game assets are copied.
 
 ## Prototype items
 
-| Custom Model Data | Item | Model |
+| Custom Model Data | Item | Model and texture |
 |---:|---|---|
-| 10001 | Scrap | Custom cuboid model with original pixel texture |
-| 10002 | Cloth bundle | Custom cuboid model |
-| 10003 | Metal component | Custom cuboid model |
-| 10004 | Wood bundle | Custom cuboid model |
-| 10005 | Stone chunk | Custom cuboid model |
-| 10006 | Water canister | Custom cuboid model |
-| 10007 | Field backpack | Custom cuboid model |
-| 10008 | Cloth hood | Custom cuboid model |
-
-The models use vanilla Minecraft textures as temporary placeholders. Custom pixel-art textures are a later task.
+| 10001 | Scrap | 3D cuboid + original 16×16 pixel texture |
+| 10002 | Cloth bundle | 3D cuboid + original 16×16 pixel texture |
+| 10003 | Metal component | 3D cuboid + original 16×16 pixel texture |
+| 10004 | Wood bundle | 3D cuboid + original 16×16 pixel texture |
+| 10005 | Stone chunk | 3D cuboid + original 16×16 pixel texture |
+| 10006 | Water canister | 3D cuboid + original 16×16 pixel texture |
+| 10007 | Field backpack | 3D cuboid + original 16×16 pixel texture |
+| 10008 | Cloth hood | 3D cuboid + original 16×16 pixel texture |
 
 ## Install and test
 
-1. Copy this folder into `.minecraft/resourcepacks/RustMine-Items`.
-2. Enable the pack in Minecraft 1.21.1.
-3. In a world with cheats enabled, use:
+1. Download the `RustMine-Items-1.21.1` ZIP from the latest successful GitHub Actions run.
+2. Extract it into the Minecraft `.minecraft/resourcepacks/RustMine-Items` folder.
+3. Enable **RustMine Items** in Minecraft 1.21.1.
+4. In a world with cheats enabled, enter one of these commands:
 
 ```mcfunction
 /give @s minecraft:paper[minecraft:custom_model_data=10001]
@@ -34,4 +33,6 @@ The models use vanilla Minecraft textures as temporary placeholders. Custom pixe
 /give @s minecraft:paper[minecraft:custom_model_data=10008]
 ```
 
-These are resource-pack prototypes, not registered Fabric mod items. They provide 3D cuboid geometry and first-/third-person display transforms, but do not yet include animated first-person movement. The next implementation stage is a Fabric mod with registered items, original textures, and safe visual/idle animations.
+## Current limitations
+
+This is a resource-pack prototype, not a Fabric mod with registered custom items. It includes custom cuboid geometry, original pixel textures, and static first-/third-person display transforms. It does **not** yet include animated first-person hand movement, player-wearable armor behavior, or gameplay systems. Those require a separate mod implementation.
