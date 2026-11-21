@@ -14,6 +14,7 @@ An original Rust-inspired visual content prototype. No Rust game assets are copi
 | 10006 | Water canister | 3D cuboid + original 16×16 pixel texture |
 | 10007 | Field backpack | 3D cuboid + original 16×16 pixel texture |
 | 10008 | Cloth hood | 3D cuboid + original 16×16 pixel texture |
+| 10009 | Field viewer | 3D multi-part utility prop; uses the existing metal-component texture |
 
 ## Install and test
 
@@ -31,8 +32,9 @@ An original Rust-inspired visual content prototype. No Rust game assets are copi
 /give @s minecraft:paper[minecraft:custom_model_data=10006]
 /give @s minecraft:paper[minecraft:custom_model_data=10007]
 /give @s minecraft:paper[minecraft:custom_model_data=10008]
+/give @s minecraft:paper[minecraft:custom_model_data=10009]
 ```
 
 ## Current limitations
 
-This is a resource-pack prototype, not a Fabric mod with registered custom items. It includes custom cuboid geometry, original pixel textures, and static first-/third-person display transforms. It does **not** yet include animated first-person hand movement, player-wearable armor behavior, or gameplay systems. Those require a separate mod implementation.
+This is a resource-pack prototype plus a separate Fabric mod. Resource-pack display transforms are static. The Fabric Field Viewer provides a built-in raise-to-view pose, not a custom animated hand rig. The backpack and hood are not wearable armor yet.
