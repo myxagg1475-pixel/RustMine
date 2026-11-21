@@ -4,6 +4,8 @@
   "overrides": [
     { "predicate": { "custom_model_data": 10001 }, "model": "rustmine:item/scrap" },
     { "predicate": { "custom_model_data": 10002 }, "model": "rustmine:item/cloth_bundle" },
-    { "predicate": { "custom_model_data": 10003 }, "model": "rustmine:item/metal_component" }
+    { "predicate": { "custom_model_data": 10003 }, "model": "rustmine:item/metal_component" },
+    { "predicate": { "custom_model_data": 10004 }, "model": "rustmine:item/wood_bundle" },
+    { "predicate": { "custom_model_data": 10005 }, "model": "rustmine:item/stone_chunk" }
   ]
 }
