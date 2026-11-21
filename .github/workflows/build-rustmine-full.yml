@@ -3,7 +3,7 @@ name: Build RustMine full Minecraft launcher
 on:
   workflow_dispatch:
   push:
-    branches: [integrate-amethyst-launcher]
+    branches: [main, integrate-amethyst-launcher]
 
 permissions:
   contents: read
