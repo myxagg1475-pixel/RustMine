@@ -22,6 +22,11 @@ public final class RustMineMod implements ModInitializer {
     public static final Item WATER_CANISTER = register("water_canister");
     public static final Item FIELD_BACKPACK = register("field_backpack");
     public static final Item CLOTH_HOOD = register("cloth_hood");
+    public static final Item FIELD_VIEWER = Registry.register(
+        BuiltInRegistries.ITEM,
+        ResourceLocation.fromNamespaceAndPath(MOD_ID, "field_viewer"),
+        new InspectableItem(new Item.Properties().stacksTo(1))
+    );
 
     private static Item register(String path) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
@@ -39,7 +44,8 @@ public final class RustMineMod implements ModInitializer {
             entries.accept(WATER_CANISTER);
             entries.accept(FIELD_BACKPACK);
             entries.accept(CLOTH_HOOD);
+            entries.accept(FIELD_VIEWER);
         });
-        LOGGER.info("RustMine registered 8 survival items.");
+        LOGGER.info("RustMine registered 9 survival items, including a first-person inspection viewer.");
     }
 }
