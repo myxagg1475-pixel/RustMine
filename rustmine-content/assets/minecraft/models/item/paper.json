@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": { "layer0": "minecraft:item/paper" },
+  "overrides": [
+    { "predicate": { "custom_model_data": 10001 }, "model": "rustmine:item/scrap" },
+    { "predicate": { "custom_model_data": 10002 }, "model": "rustmine:item/cloth_bundle" },
+    { "predicate": { "custom_model_data": 10003 }, "model": "rustmine:item/metal_component" }
+  ]
+}
