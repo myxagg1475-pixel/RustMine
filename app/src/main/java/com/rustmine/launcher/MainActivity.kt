@@ -48,7 +48,7 @@ class MainActivity : Activity() {
         val page = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(dp(20), dp(26), dp(20), dp(24))
-            setBackgroundColor(background)
+            setBackgroundColor(this@MainActivity.background)
         }
 
         page.addView(text("RUSTMINE", 34f, orange, true))
