@@ -1,0 +1,35 @@
+name: Build RustMine content pack
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'rustmine-content/**'
+      - '.github/workflows/build-rustmine-content.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate model JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in Path("rustmine-content").rglob("*.json"):
+              json.loads(path.read_text(encoding="utf-8"))
+              print("OK:", path)
+          PY
+      - name: Package resource pack
+        run: |
+          cd rustmine-content
+          zip -r ../RustMine-Items-1.21.1.zip .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RustMine-Items-1.21.1
+          path: RustMine-Items-1.21.1.zip
+          if-no-files-found: error
