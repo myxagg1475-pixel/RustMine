@@ -24,6 +24,43 @@ jobs:
               json.loads(path.read_text(encoding="utf-8"))
               print("OK:", path)
           PY
+      - name: Validate PNG textures and model references
+        run: |
+          python - <<'PY'
+          import json, struct, zlib
+          from pathlib import Path
+          root = Path("rustmine-content/assets/rustmine")
+          textures = set()
+          for path in (root / "textures").rglob("*.png"):
+              data = path.read_bytes()
+              assert data[:8] == b"\\x89PNG\\r\\n\\x1a\\n", f"Invalid PNG signature: {path}"
+              pos, chunks, compressed = 8, [], bytearray()
+              while pos < len(data):
+                  length = struct.unpack(">I", data[pos:pos+4])[0]
+                  kind = data[pos+4:pos+8]
+                  payload = data[pos+8:pos+8+length]
+                  crc = struct.unpack(">I", data[pos+8+length:pos+12+length])[0]
+                  assert zlib.crc32(kind + payload) & 0xffffffff == crc, f"Bad PNG CRC: {path}"
+                  if kind == b"IHDR":
+                      width, height = struct.unpack(">II", payload[:8])
+                      assert width > 0 and height > 0
+                  if kind == b"IDAT":
+                      compressed.extend(payload)
+                  chunks.append(kind)
+                  pos += 12 + length
+                  if kind == b"IEND":
+                      break
+              zlib.decompress(bytes(compressed))
+              assert chunks[-1] == b"IEND", f"Missing IEND: {path}"
+              textures.add(path.relative_to(root).with_suffix("").as_posix())
+              print("PNG OK:", path)
+          for path in (root / "models" / "item").glob("*.json"):
+              model = json.loads(path.read_text())
+              for key, value in model.get("textures", {}).items():
+                  if value.startswith("rustmine:"):
+                      assert value.split(":", 1)[1] in textures, f"Missing texture {value} in {path}"
+          print("All referenced RustMine textures exist.")
+          PY
       - name: Package resource pack
         run: |
           cd rustmine-content
