@@ -1,0 +1,180 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/leather_helmet"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        90,
+        -35
+      ],
+      "translation": [
+        0,
+        1,
+        1
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        90,
+        -25
+      ],
+      "translation": [
+        1,
+        2,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ]
+    }
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        4,
+        4
+      ],
+      "to": [
+        13,
+        13,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            3,
+            4,
+            13,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "south": {
+          "uv": [
+            3,
+            4,
+            13,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "east": {
+          "uv": [
+            4,
+            4,
+            12,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "west": {
+          "uv": [
+            4,
+            4,
+            12,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "up": {
+          "uv": [
+            3,
+            4,
+            13,
+            12
+          ],
+          "texture": "#layer0"
+        },
+        "down": {
+          "uv": [
+            3,
+            4,
+            13,
+            12
+          ],
+          "texture": "#layer0"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        2,
+        6
+      ],
+      "to": [
+        11,
+        5,
+        10
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            5,
+            2,
+            11,
+            5
+          ],
+          "texture": "#layer0"
+        },
+        "south": {
+          "uv": [
+            5,
+            2,
+            11,
+            5
+          ],
+          "texture": "#layer0"
+        },
+        "east": {
+          "uv": [
+            6,
+            2,
+            10,
+            5
+          ],
+          "texture": "#layer0"
+        },
+        "west": {
+          "uv": [
+            6,
+            2,
+            10,
+            5
+          ],
+          "texture": "#layer0"
+        },
+        "up": {
+          "uv": [
+            5,
+            6,
+            11,
+            10
+          ],
+          "texture": "#layer0"
+        },
+        "down": {
+          "uv": [
+            5,
+            6,
+            11,
+            10
+          ],
+          "texture": "#layer0"
+        }
+      }
+    }
+  ]
+}
