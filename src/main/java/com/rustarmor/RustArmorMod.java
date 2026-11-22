@@ -2,7 +2,7 @@ package com.rustarmor;
 
 import java.util.Map;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -56,7 +56,7 @@ public class RustArmorMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT).register(entries -> {
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(entries -> {
             entries.accept(RUST_METAL_FACEMASK);
             entries.accept(RUST_METAL_CHESTPLATE);
         });
