@@ -17,3 +17,59 @@ write("textures/entity/equipment/humanoid/rust_metal.png", ARMOR)
 write("textures/item/rust_metal_chestplate.png", CHESTPLATE)
 write("textures/item/rust_metal_facemask.png", FACEMASK)
 print("Generated the transparent Rust item icons and equipped armor texture.")
+
+
+# Replace the chestplate item icon with a clean transparent PNG.
+# PNG is generated with the Python standard library so no external packages are needed.
+import struct
+import zlib
+
+def make_png(path, pixels):
+    height = len(pixels)
+    width = len(pixels[0])
+    raw = b"".join(b"\\x00" + b"".join(bytes(p) for p in row) for row in pixels)
+    def chunk(kind, data):
+        return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data) & 0xffffffff)
+    png = (b"\\x89PNG\\r\\n\\x1a\\n"
+           + chunk(b"IHDR", struct.pack(">2I5B", width, height, 8, 6, 0, 0, 0))
+           + chunk(b"IDAT", zlib.compress(raw, 9))
+           + chunk(b"IEND", b""))
+    target = ROOT / path
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(png)
+
+W, H = 32, 32
+px = [[(0, 0, 0, 0) for _ in range(W)] for _ in range(H)]
+def rect(x1, y1, x2, y2, color):
+    for y in range(y1, y2):
+        for x in range(x1, x2):
+            px[y][x] = color
+
+outline = (45, 48, 49, 255)
+steel = (137, 143, 142, 255)
+light = (190, 194, 187, 255)
+shadow = (79, 84, 83, 255)
+rust = (166, 83, 39, 255)
+rust_light = (211, 119, 53, 255)
+# Broad shoulders and torso silhouette
+rect(5, 8, 12, 13, outline); rect(20, 8, 27, 13, outline)
+rect(6, 9, 11, 12, steel); rect(21, 9, 26, 12, steel)
+rect(8, 10, 24, 27, outline)
+rect(9, 11, 23, 26, steel)
+rect(11, 12, 21, 25, light)
+# Neck opening and segmented metal plates
+rect(13, 8, 19, 12, outline); rect(14, 9, 18, 11, shadow)
+rect(10, 14, 22, 16, shadow)
+rect(10, 17, 22, 18, steel)
+rect(11, 20, 21, 21, shadow)
+rect(11, 22, 21, 24, steel)
+# Rusted seams and rivets
+rect(9, 12, 11, 15, rust); rect(21, 12, 23, 15, rust)
+rect(12, 16, 14, 18, rust_light); rect(18, 16, 20, 18, rust)
+rect(14, 22, 18, 24, rust)
+for x, y in [(10, 10), (22, 10), (10, 24), (22, 24), (15, 13), (17, 13)]:
+    rect(x, y, x+1, y+1, light)
+# Dark lower edge
+rect(10, 26, 22, 27, shadow)
+make_png("textures/item/rust_metal_chestplate.png", px)
+print("Repaired the chestplate icon as a transparent 32x32 PNG.")
