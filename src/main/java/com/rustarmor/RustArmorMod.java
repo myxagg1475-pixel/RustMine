@@ -32,7 +32,7 @@ public class RustArmorMod implements ModInitializer {
 
     private static final ArmorMaterial MATERIAL = new ArmorMaterial(
             BASE_DURABILITY,
-            Map.of(ArmorType.HELMET, 3, ArmorType.CHESTPLATE, 8,
+            Map.of(ArmorType.HELMET, 27, ArmorType.CHESTPLATE, 36,
                     ArmorType.LEGGINGS, 6, ArmorType.BOOTS, 3),
             12, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.0F,
             REPAIR_TAG, ARMOR_ASSET
