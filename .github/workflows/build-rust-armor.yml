@@ -1,0 +1,54 @@
+name: Build Rust Armor mod
+
+on:
+  push:
+    paths:
+      - 'RustArmor_Fabric_1.21.11_FIXED_SOURCE.zip'
+      - '.github/workflows/build-rust-armor.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.2.1'
+
+      - name: Unpack mod source
+        run: |
+          test -f RustArmor_Fabric_1.21.11_FIXED_SOURCE.zip
+          mkdir -p rustarmor
+          unzip -q RustArmor_Fabric_1.21.11_FIXED_SOURCE.zip -d rustarmor
+
+      - name: Build Fabric mod
+        working-directory: rustarmor
+        run: gradle --no-daemon clean build
+
+      - name: Verify mod jar
+        id: verify
+        run: |
+          JAR=$(find rustarmor/build/libs -maxdepth 1 -type f -name 'rust-armor-*.jar' ! -name '*-sources.jar' | head -n 1)
+          test -n "$JAR"
+          jar tf "$JAR" | grep -q '^fabric.mod.json$'
+          echo "jar=$JAR" >> "$GITHUB_OUTPUT"
+
+      - name: Upload compiled mod
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rust-Armor-Fabric-1.21.11
+          path: ${{ steps.verify.outputs.jar }}
+          if-no-files-found: error
