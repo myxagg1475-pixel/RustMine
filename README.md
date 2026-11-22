@@ -1,12 +1,22 @@
 # Rust Armor — Fabric 1.21.11
 
-This repository is for the Rust-inspired Minecraft Java armor mod only.
+A Fabric mod adding two Rust-inspired armor pieces:
+- **Metal Facemask** — helmet slot
+- **Metal Chestplate** — chest slot
+
+The armor uses Minecraft's built-in humanoid equipment rendering with custom steel-and-rust textures. Both items appear in the Combat creative tab.
 
 ## Build
-1. Upload `RustArmor_Fabric_1.21.11_FIXED_SOURCE.zip` to the repository root.
-2. GitHub Actions will run **Build Rust Armor mod**.
-3. Download the compiled JAR from the workflow run's Artifacts section.
+Requires JDK 21 and Gradle 9.x.
 
-Target: Minecraft Java 1.21.11, Fabric, Java 21.
+```bash
+gradle build
+```
 
-The Zalith Launcher Android project has been removed from this repository. This does not uninstall or change any launcher app on your phone.
+The compiled mod is placed in `build/libs/`.
+
+## Give commands
+```
+/give @s rustarmor:rust_metal_facemask
+/give @s rustarmor:rust_metal_chestplate
+```

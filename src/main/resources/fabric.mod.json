@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "rustarmor",
+  "version": "${version}",
+  "name": "Rust Armor",
+  "description": "Rust-inspired metal facemask and chestplate for Minecraft 1.21.11.",
+  "authors": ["RustMine"],
+  "license": "All-Rights-Reserved",
+  "icon": "assets/rustarmor/icon.png",
+  "environment": "*",
+  "entrypoints": { "main": ["com.rustarmor.RustArmorMod"] },
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
