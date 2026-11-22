@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'RustArmor_Fabric_1.21.11_FIXED_SOURCE.zip'
-      - '.github/workflows/build-rust-armor.yml'
   workflow_dispatch:
 
 permissions:
