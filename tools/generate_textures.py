@@ -73,3 +73,22 @@ for x, y in [(10, 10), (22, 10), (10, 24), (22, 24), (15, 13), (17, 13)]:
 rect(10, 26, 22, 27, shadow)
 make_png("textures/item/rust_metal_chestplate.png", px)
 print("Repaired the chestplate icon as a transparent 32x32 PNG.")
+
+
+# Build a complete opaque atlas for every UV region used by the worn armor.
+armor_px = [[(105, 111, 111, 255) for _ in range(64)] for _ in range(64)]
+for y in range(64):
+    for x in range(64):
+        if ((x * 13 + y * 7) % 19) < 3:
+            armor_px[y][x] = (83, 88, 87, 255)
+        elif ((x * 5 + y * 11) % 37) < 2:
+            armor_px[y][x] = (145, 150, 145, 255)
+for y in (7, 23, 39, 55):
+    for x in range(64):
+        armor_px[y][x] = (137, 76, 39, 255)
+for y in range(64):
+    for x in (15, 31, 47, 63):
+        if y % 8 in (2, 3):
+            armor_px[y][x] = (164, 87, 47, 255)
+make_png("textures/entity/equipment/humanoid/rust_metal.png", armor_px)
+print("Generated complete 64x64 opaque worn armor atlas.")
