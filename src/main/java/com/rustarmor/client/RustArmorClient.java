@@ -71,7 +71,7 @@ public class RustArmorClient implements ClientModInitializer {
         target.xScale = source.xScale;
         target.yScale = source.yScale;
         target.zScale = source.zScale;
-        target.visible = source.visible;
+        target.visible = true;
     }
 
     private static LayerDefinition createMaskLayer() {
