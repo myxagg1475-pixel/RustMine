@@ -13,6 +13,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -30,14 +31,13 @@ public class RustArmorClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(CHEST_LAYER, RustArmorClient::createChestLayer);
 
         ArmorRenderer.register(context -> {
-            ModelPart root = context.bakeLayer(MASK_LAYER);
-            ModelPart head = root.getChild("head");
+            ModelPart head = context.bakeLayer(MASK_LAYER).getChild("head");
             return (matrices, queue, stack, state, slot, light, vanillaModel) -> {
                 if (slot != EquipmentSlot.HEAD) return;
-                head.copyFrom(vanillaModel.head);
+                copyPose(head, vanillaModel.head);
                 matrices.pushPose();
-                queue.submitModelPart(head, matrices, RenderType.entityCutoutNoCull(TEXTURE),
-                        light,  OverlayTexture.NO_OVERLAY, null);
+                queue.submitModelPart(head, matrices, RenderTypes.entityCutoutNoCull(TEXTURE),
+                        light, OverlayTexture.NO_OVERLAY, null);
                 matrices.popPose();
             };
         }, com.rustarmor.RustArmorMod.RUST_METAL_FACEMASK);
@@ -49,16 +49,29 @@ public class RustArmorClient implements ClientModInitializer {
             ModelPart leftArm = root.getChild("left_arm");
             return (matrices, queue, stack, state, slot, light, vanillaModel) -> {
                 if (slot != EquipmentSlot.CHEST) return;
-                body.copyFrom(vanillaModel.body);
-                rightArm.copyFrom(vanillaModel.rightArm);
-                leftArm.copyFrom(vanillaModel.leftArm);
+                copyPose(body, vanillaModel.body);
+                copyPose(rightArm, vanillaModel.rightArm);
+                copyPose(leftArm, vanillaModel.leftArm);
                 matrices.pushPose();
-                queue.submitModelPart(body, matrices, RenderType.entityCutoutNoCull(TEXTURE), light, OverlayTextureAccess.NO_OVERLAY, null);
-                queue.submitModelPart(rightArm, matrices, RenderType.entityCutoutNoCull(TEXTURE), light, OverlayTextureAccess.NO_OVERLAY, null);
-                queue.submitModelPart(leftArm, matrices, RenderType.entityCutoutNoCull(TEXTURE), light, OverlayTextureAccess.NO_OVERLAY, null);
+                queue.submitModelPart(body, matrices, RenderTypes.entityCutoutNoCull(TEXTURE), light, OverlayTexture.NO_OVERLAY, null);
+                queue.submitModelPart(rightArm, matrices, RenderTypes.entityCutoutNoCull(TEXTURE), light, OverlayTexture.NO_OVERLAY, null);
+                queue.submitModelPart(leftArm, matrices, RenderTypes.entityCutoutNoCull(TEXTURE), light, OverlayTexture.NO_OVERLAY, null);
                 matrices.popPose();
             };
         }, com.rustarmor.RustArmorMod.RUST_METAL_CHESTPLATE);
+    }
+
+    private static void copyPose(ModelPart target, ModelPart source) {
+        target.x = source.x;
+        target.y = source.y;
+        target.z = source.z;
+        target.xRot = source.xRot;
+        target.yRot = source.yRot;
+        target.zRot = source.zRot;
+        target.xScale = source.xScale;
+        target.yScale = source.yScale;
+        target.zScale = source.zScale;
+        target.visible = source.visible;
     }
 
     private static LayerDefinition createMaskLayer() {
