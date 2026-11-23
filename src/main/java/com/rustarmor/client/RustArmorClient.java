@@ -1,6 +1,5 @@
 package com.rustarmor.client;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -13,8 +12,8 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
 
@@ -38,7 +37,7 @@ public class RustArmorClient implements ClientModInitializer {
                 head.copyFrom(vanillaModel.head);
                 matrices.pushPose();
                 queue.submitModelPart(head, matrices, RenderType.entityCutoutNoCull(TEXTURE),
-                        light,  OverlayTextureAccess.NO_OVERLAY, null);
+                        light,  OverlayTexture.NO_OVERLAY, null);
                 matrices.popPose();
             };
         }, com.rustarmor.RustArmorMod.RUST_METAL_FACEMASK);
@@ -86,9 +85,5 @@ public class RustArmorClient implements ClientModInitializer {
                 .addBox(-1.8F, -2.0F, -2.8F, 5.0F, 6.0F, 5.6F, new CubeDeformation(0.3F)),
                 PartPose.offset(5.0F, 2.0F, 0.0F));
         return LayerDefinition.create(mesh, 64, 64);
-    }
-
-    private static final class OverlayTextureAccess {
-        private static final int NO_OVERLAY = 0;
     }
 }
