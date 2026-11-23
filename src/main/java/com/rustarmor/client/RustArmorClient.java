@@ -19,7 +19,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
 
 public class RustArmorClient implements ClientModInitializer {
-    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath("rustarmor", "textures/models/armor/rust_metal.png");
+    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath("rustarmor", "textures/entity/equipment/humanoid/rust_metal.png");
     private static final ModelLayerLocation MASK_LAYER = new ModelLayerLocation(
             Identifier.fromNamespaceAndPath("rustarmor", "facemask"), "main");
     private static final ModelLayerLocation CHEST_LAYER = new ModelLayerLocation(
