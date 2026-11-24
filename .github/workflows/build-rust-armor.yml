@@ -23,8 +23,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "9.2.1"
-      - name: Generate Rust-style armor textures and icons
-        run: python3 tools/generate_textures.py
       - name: Build mod
         run: gradle --no-daemon clean build
       - name: Upload compiled mod
